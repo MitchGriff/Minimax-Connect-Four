@@ -35,13 +35,14 @@ class Game(object):
     def neighbor(self, col, color):
         """Return a Game instance like this one but with a move made into the specified column."""
         # YOU FILL THIS IN
+        newGrid = copy.deepcopy(self.grid)
 
         for row in range(7, -1, -1):
-            if self.grid[row][col] == '-':
-                self.grid[row][col] = color
+            if newGrid[row][col] == '-':
+                newGrid[row][col] = color
                 break
 
-        return Game(self.grid)
+        return Game(newGrid)
 
     def utility(self, color):
         """Return the minimax utility value of this game"""
@@ -144,9 +145,9 @@ class RandomAgent(Agent):
     def move(self, game):
         """Returns a random move"""
         # YOU FILL THIS IN
-        possMoves = game.possible_moves
-        randCol = randint(0, len(possMoves))
-        return game.neighbor(game.grid, randCol, self.color)
+        possMoves = game.possible_moves()
+        randCol = randint(0, len(possMoves)-1)
+        return randCol
 
 
 class FirstMoveAgent(Agent):
@@ -156,7 +157,7 @@ class FirstMoveAgent(Agent):
         """Returns the first possible move"""
         # YOU FILL THIS IN
         moves = game.possible_moves(game.grid)
-        return game.neighbor(game.grid, moves[0], self.color)
+        return moves[0]
 
 
 class MinimaxAgent(Agent):
@@ -259,5 +260,5 @@ def single_game(io=True):
 
 
 if __name__ == '__main__':
-    single_game(io=True)
-    #tournament(simulations=50)
+    #single_game(io=True)
+    tournament(simulations=50)
