@@ -70,19 +70,19 @@ class Game(object):
                     continue
                 if self.grid[row0][col0] == self.grid[row1][col1] == self.grid[row2][col2] == self.grid[row3][col3]:
                     if self.grid[row0][col0] == self.color:
-                        counterValue += 10
+                        counterValue += 50
                     elif self.grid[row0][col0] == self.oppColor:
-                        counterValue -= 12
+                        counterValue -= 50
                 elif self.grid[row0][col0] == self.grid[row1][col1] == self.grid[row2][col2]:
                     if self.grid[row0][col0] == self.color:
-                        counterValue += 6
+                        counterValue += 35
                     elif self.grid[row0][col0] == self.oppColor:
-                        counterValue += 8
+                        counterValue -= 35
                 elif self.grid[row0][col0] == self.grid[row1][col1]:
                     if self.grid[row0][col0] == self.color:
-                        counterValue += 2
+                        counterValue += 15
                     elif self.grid[row0][col0] == self.oppColor:
-                        counterValue += 3
+                        counterValue -= 15
         return counterValue
 
     def winning_state(self):
